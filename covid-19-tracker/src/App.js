@@ -27,30 +27,35 @@ function App() {
   const [mapZoom, setMapZoom] = useState(3);
 
   // execute data loading when page loading
-  useEffect(async () => {
-    const getCountriesData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/countries")
-        .then((response) => response.json())
-        .then((data) => {
-          const countries = data.map((country) => ({
-            name: country.country, // United States
-            value: country.countryInfo.iso2, // USA
-          }));
-          setTableData(sortData(data));
-          setContries(countries);
-        });
-    };
+  useEffect( () => {
     getCountriesData();
   }, []);
 
+  const getCountriesData = async () => {
+    await fetch("https://disease.sh/v3/covid-19/countries")
+      .then((response) => response.json())
+      .then((data) => {
+        const countries = data.map((country) => ({
+          name: country.country, // United States
+          value: country.countryInfo.iso2, // USA
+        }));
+        setTableData(sortData(data));
+        setContries(countries);
+      });
+  };
+
   // load worldwide info
-  useEffect(async () => {
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
     await fetch("https://disease.sh/v3/covid-19/all")
       .then((response) => response.json())
       .then((data) => {
         setCountryInfo(data);
       });
-  }, []);
+  }
 
   // select country in dropdown
   const onCountryChange = async (event) => {
@@ -77,8 +82,8 @@ function App() {
           <FormControl className="app__dropdown">
             <Select variant="outlined" value={country} onChange={onCountryChange}>
               <MenuItem value="worldwide">Worldwide</MenuItem>
-              {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
+              {countries.map((country, index) => (
+                <MenuItem key={index} value={country.value}>{country.name}</MenuItem>
               ))}
             </Select>
           </FormControl>
