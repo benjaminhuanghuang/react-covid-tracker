@@ -24,11 +24,21 @@ Install material-ui
 ```
 
 5. Create Header
+
 6. Create Info Boxes
+
 7. Create Table
+
 8. Create Chart
+- Use react-chartjs
+```
+  npm install -S react-chartjs-2 chart.js
+```
+
 9. Create Map
+
 10. Styling
+
 11. Deploy
 
 
