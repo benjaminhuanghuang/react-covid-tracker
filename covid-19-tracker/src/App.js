@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { FormControl, Select, MenuItem, Card, CardContent } from "@material-ui/core";
 //
 import InfoBox from "./InfoBox";
-
 import Map from "./Map";
-
 import Table from "./Table";
+import LineGraph from "./LineGraph";
+
+import {sortData} from './util';
+//
 
 import "./App.css";
 
@@ -21,7 +23,7 @@ function App() {
   const [tableData, setTableData] = useState([]);
 
   // execute data loading when page loading
-  useEffect(() => {
+  useEffect(async () => {
     const getCountriesData = async () => {
       await fetch("https://disease.sh/v3/covid-19/countries")
         .then((response) => response.json())
@@ -30,7 +32,7 @@ function App() {
             name: country.country, // United States
             value: country.countryInfo.iso2, // USA
           }));
-          setTableData(data);
+          setTableData(sortData(data));
           setContries(countries);
         });
     };
@@ -91,7 +93,8 @@ function App() {
         <CardContent>
           <h3>Live cases by Country</h3>
           <Table countries={tableData}></Table>
-          <h3>Live</h3>
+          <h3>Worldwide new cases</h3>
+          <LineGraph/>
         </CardContent>
       </Card>
     </div>
