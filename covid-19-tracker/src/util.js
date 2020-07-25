@@ -9,7 +9,7 @@ const casesTypeColors = {
     half_op: "rgb(204,16,52, 0.5)",
     multiplier: 800,
   },
-  recoverd: {
+  recovered: {
     hex: "#7dd71d",
     rgb: "rgb(125,215,29)",
     half_op: "rgb(125,215,29, 0.5)",
@@ -53,3 +53,8 @@ export const showDataOnMap = (data, casesType = "cases") =>
       </Popup>
     </Circle>
   ));
+
+
+  export const prettyPrintStat = (stat) =>{
+    return stat? `+${numeral(stat).format("0.0a")}`:"+0";
+  }
