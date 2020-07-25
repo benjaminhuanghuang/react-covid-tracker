@@ -74,7 +74,7 @@ function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
-        setMapCenter([data.countryInfo .lat, data.countryInfo.long]);
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
         setMapZoom(4);
       });
   };
@@ -100,7 +100,7 @@ function App() {
           <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
         </div>
 
-        <Map countries={mapCountries} center={mapCenter} zoom={mapZoom}/>
+        <Map countries={mapCountries} casesType="cases" center={mapCenter} zoom={mapZoom}/>
       </div>
 
       <Card className="app__right">
