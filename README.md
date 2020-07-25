@@ -14,9 +14,13 @@ Create a project in  firebase
 
 
 3. Cleanup Project
-```
-```
+
 4. Structure of project
+Install material-ui
+```
+  npm install @material-ui/core
+```
+
 5. Create Header
 6. Create Info Boxes
 7. Create Table
