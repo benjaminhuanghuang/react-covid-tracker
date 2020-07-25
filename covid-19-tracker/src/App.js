@@ -14,7 +14,7 @@ import {sortData} from './util';
 import "./App.css";
 
 function App() {
-  const [countries, setContries] = useState(["USA", "CHINA"]);
+  const [countries, setContries] = useState([]);
 
   const [country, setCountry] = useState("worldwide");
 
@@ -25,6 +25,8 @@ function App() {
   const [mapCenter, setMapCenter] = useState({lat: 34.80746, lng:-40.4796});
 
   const [mapZoom, setMapZoom] = useState(3);
+
+  const [mapCountries, setMapContries] = useState([]);
 
   // execute data loading when page loading
   useEffect( () => {
@@ -40,6 +42,7 @@ function App() {
           value: country.countryInfo.iso2, // USA
         }));
         setTableData(sortData(data));
+        setMapContries(data)
         setContries(countries);
       });
   };
@@ -71,6 +74,8 @@ function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
+        setMapCenter([data.countryInfo .lat, data.countryInfo.long]);
+        setMapZoom(4);
       });
   };
 
@@ -95,7 +100,7 @@ function App() {
           <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
         </div>
 
-        <Map center={mapCenter} zoom={mapZoom}/>
+        <Map countries={mapCountries} center={mapCenter} zoom={mapZoom}/>
       </div>
 
       <Card className="app__right">
