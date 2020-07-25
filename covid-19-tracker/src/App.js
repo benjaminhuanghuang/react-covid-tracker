@@ -7,6 +7,8 @@ import InfoBox from "./InfoBox";
 
 import Map from "./Map";
 
+import Table from "./Table";
+
 import "./App.css";
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
   const [country, setCountry] = useState("worldwide");
 
   const [countryInfo, setCountryInfo] = useState({});
+
+  const [tableData, setTableData] = useState([]);
 
   // execute data loading when page loading
   useEffect(() => {
@@ -26,6 +30,7 @@ function App() {
             name: country.country, // United States
             value: country.countryInfo.iso2, // USA
           }));
+          setTableData(data);
           setContries(countries);
         });
     };
@@ -84,7 +89,8 @@ function App() {
 
       <Card className="app__right">
         <CardContent>
-          <h3>Live</h3>
+          <h3>Live cases by Country</h3>
+          <Table countries={tableData}></Table>
           <h3>Live</h3>
         </CardContent>
       </Card>
