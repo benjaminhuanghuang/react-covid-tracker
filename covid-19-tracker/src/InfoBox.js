@@ -4,9 +4,9 @@ import {Card, CardContent, Typography} from "@material-ui/core"
 
 import "./InfoBox.css";
 
-function InfoBox({title, cases, total, ...props}) {
+function InfoBox({title, cases, total, active, ...props}) {
   return (
-    <Card className="infoBox" onClick={props.onClick}>
+    <Card className={`infoBox ${active && 'infoBox--selected'}`} onClick={props.onClick}>
       <CardContent>
         <Typography className="infoBox__title" color="textSecondary">
           {title}
@@ -18,7 +18,7 @@ function InfoBox({title, cases, total, ...props}) {
           {total} Total
         </Typography>
       </CardContent>
-    </Card>
+    </Card> 
   )
 }
 

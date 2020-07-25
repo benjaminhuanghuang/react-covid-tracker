@@ -65,19 +65,21 @@ const buildChartData = (data, casesType = "cases") => {
   return chartData;
 };
 
-function LineGraph({casesType="cases"}) {
+
+
+function LineGraph({ casesType = "cases" }) {
   const [data, setData] = useState({});
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdats=120")
-        .then((response) => response.json())
-        .then((data) => {
-          const chartData = buildChartData(data, casesType);
+  const fetchData = async () => {
+    await fetch("https://disease.sh/v3/covid-19/historical/all?lastdats=120")
+      .then((response) => response.json())
+      .then((data) => {
+        const chartData = buildChartData(data, casesType);
+        setData(chartData);
+      });
+  };
 
-          setData(chartData);
-        });
-    };
+  useEffect(() => {
     fetchData();
   }, [casesType]);
 

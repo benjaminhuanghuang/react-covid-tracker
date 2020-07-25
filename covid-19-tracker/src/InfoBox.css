@@ -10,3 +10,7 @@
   color: #cc1034;
   margin-bottom: 0.5rem;
 }
+
+.infoBox--selected {
+  border-top: 10px solid greenyellow
+}
