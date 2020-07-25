@@ -36,7 +36,9 @@ Install material-ui
 ```
 
 9. Create Map
-
+```
+  npm install -S leaflet react-leaflet
+```
 10. Styling
 
 11. Deploy
